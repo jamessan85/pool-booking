@@ -72,6 +72,6 @@ app.use((err, req, res, next) => {
   res.render("error", { message: err.message });
 });
 
-app.listen(3001, () => {
+app.listen(config.PORT, () => {
   console.log("Server is running on port 3001");
 });
