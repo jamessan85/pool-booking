@@ -4,7 +4,7 @@ import { saveData, getData } from "./queries.js";
 import runPuppet from "./puppeteer.js";
 import nodemailer from "nodemailer";
 import config from "./config.js";
-console.log(config);
+
 // create nodemailer transporter gmail account
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
