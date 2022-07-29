@@ -1,3 +1,6 @@
 import dotenv from "dotenv";
-
-export default dotenv.config().parsed;
+const env = dotenv.config().parsed;
+export default {
+  EMAIL_ADDRESS: env.EMAIL_ADDRESS,
+  PASSCODE: env.PASSCODE,
+};
