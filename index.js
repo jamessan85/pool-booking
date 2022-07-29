@@ -42,22 +42,30 @@ app.post("/", async (req, res, next) => {
   }
 });
 
-// getData().then(async (data) => {
-//   try {
-//     for (let i = 0; i < data.length; i++) {
-//       const row = data[i];
-//       console.log("running row " + i);
-//       await new Promise((resolve) => setTimeout(resolve, 3000));
-//       const res = await runPuppet(row);
-//       if (res.includes(row.time)) {
-//         console.log(`send email ${row.email}`);
-//         await sendMail({ toEmail: row.email, date: row.date, time: row.time });
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+const ONE_DAY = 24 * 60 * 60 * 1000;
+
+setInterval(() => {
+  getData().then(async (data) => {
+    try {
+      for (let i = 0; i < data.length; i++) {
+        const row = data[i];
+        console.log("running row " + i);
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        const res = await runPuppet(row);
+        if (res.includes(row.time)) {
+          console.log(`send email ${row.email}`);
+          await sendMail({
+            toEmail: row.email,
+            date: row.date,
+            time: row.time,
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+}, ONE_DAY);
 
 app.use((err, req, res, next) => {
   console.log(err);
