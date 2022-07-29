@@ -1,0 +1,10 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 10px;
+}
